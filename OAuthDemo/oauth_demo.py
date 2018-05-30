@@ -10,11 +10,11 @@ app = Flask(__name__)
 
 clientID = "APP_CLIENTID"
 secretID = "APP_SECRETID"
-redirectURI = "http://localhost:10060/oauth" #This could different if you publicly expose this endpoint.
+redirectURI = "http://localhost:10060/oauth" #This could be different if you publicly expose this endpoint.
 
 
 def get_tokens(code):
-    #Gets access token and refresh token
+    """Gets access token and refresh token"""
     print "code:", code
     url = "https://api.ciscospark.com/v1/access_token"
     headers = {'accept':'application/json','content-type':'application/x-www-form-urlencoded'}
@@ -29,7 +29,7 @@ def get_tokens(code):
 
 
 def get_oauthuser_info(access_token):
-    #Retreives OAuth user's details.
+    """Retreives OAuth user's details."""
     url = "https://api.ciscospark.com/v1/people/me"
     headers = {'accept':'application/json','Content-Type':'application/json','Authorization': 'Bearer '+ access_token}
     req = requests.get(url=url, headers=headers)
