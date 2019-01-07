@@ -36,7 +36,7 @@ def sendSparkGET(url):
     request.add_header("Authorization", "Bearer "+bearer)
     contents = urllib2.urlopen(request).read()
     return contents
-    
+
 def sendSparkPOST(url, data):
     """
     This method is used for:
@@ -48,7 +48,7 @@ def sendSparkPOST(url, data):
     request.add_header("Authorization", "Bearer "+bearer)
     contents = urllib2.urlopen(request).read()
     return contents
-    
+
 
 @post('/')
 def index(request):
