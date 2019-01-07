@@ -59,7 +59,7 @@ def get_credentials():
 def sendSparkGET(url):
     """
         This method is used for:
-        -Retrieving message text, when the webhook is triggered with a message
+        -retrieving message text, when the webhook is triggered with a message
         -Getting the username of the person who posted the message if a command is recognized
         """
     request = urllib2.Request(url,
@@ -73,7 +73,7 @@ def sendSparkGET(url):
 @post('/')
 def index(request):
     """
-        When messages come in from the webhook, they are processed here.  The message text needs to be retrieved from Spark, using the sendSparkGET() function.  The message text is parsed.
+        When messages come in from the webhook, they are processed here.  The message text needs to be retrieved from Spark, using the sendSparkGet() function.  The message text is parsed.
         """
     
     webhook = json.loads(request.body)
@@ -100,8 +100,8 @@ bearer = "Your Bot Bearer Token"
 def main(in_message):
     """
         This method is used for:
-        -Retrieving message text, when the webhook is triggered with a message
-        -Then post the message to a blank Google Spreadsheet to notify a user there came a Spark message from his bot.
+        -retrieving message text, when the webhook is triggered with a message
+        -Then post the message to a blank google spreadsheet to confirm whether the message was well received.
         -Creates a Sheets API service object:
         https://docs.google.com/spreadsheets/d/1ZDu8T6x77KUSh-Hq4fzW9NCgTx0EU_rWI7lWuPCOEjc/edit
         """
@@ -114,25 +114,11 @@ def main(in_message):
     service = discovery.build('sheets', 'v4', http=http,
 discoveryServiceUrl=discoveryUrl)
                     
-    spreadsheetId = 'Your Google spreadsheetId'
+    spreadsheetId = '1ZDu8T6x77KUSh-Hq4fzW9NCgTx0EU_rWI7lWuPCOEjc'
     rangeName = 'A1'
     body = {"values":[[in_message]]}
     result = service.spreadsheets().values().append(
 spreadsheetId=spreadsheetId, range=rangeName, valueInputOption = 'RAW', insertDataOption = 'INSERT_ROWS', body = body).execute()
     return 'ok'
 
-def send_tropo(spark_msg):
-    """
-       This method is used for:
-       -Sending the retrieved message to some one's cell phone via a Tropo SMS application just to notify a Spark message from his Bot was received in the Google Spreadsheet.
-       """
-    url = 'https://api.tropo.com/1.0/sessions'
-    headers = {'accept':'application/json','content-type':'application/json'}
-    values = {'token':'MESSAGING TOKEN FROM TROPO APP', 'msg': spark_msg }
-    data = json.dumps(values)
-    req = urllib2.Request(url = url , data = data, headers = headers)
-    response = urllib2.urlopen(req)
-    return 'ok'
-
 run_itty(server='wsgiref', host='0.0.0.0', port=10080)
-
