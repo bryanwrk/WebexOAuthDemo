@@ -25,12 +25,12 @@ import requests
 
 filepath    = '/Users/tahanson/Desktop/fox.jpg'
 filetype    = 'image/jpg'
-roomId      = 'Y2lzY29zcGFyazovL3VzL1JPT00vNmFjNjA0OTAtMDU3YS0xMWU2LWEwZWQtYzc4MmRiNGY2ODVh'
-token       = 'ODBjNzQ0MTAtZmRlNC00M2JlLWFmMWMtNjlhY2EzOThkZDY5NmEzOTIxYTYtN2Fm_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'
+roomId      = 'SOME_ROOM_ID'
+token       = 'YOUR_BEARER_TOKEN'
 url         = "https://api.ciscospark.com/v1/messages"
 
 my_fields={'roomId': roomId,
-           'markdown': '<@personEmail:googlevision@sparkbot.io|>',
+           'markdown': 'Hello World',
            'files': ('screenshot', open(filepath, 'rb'), filetype)
            }
 m = MultipartEncoder(fields=my_fields)

@@ -18,7 +18,7 @@ def sendPUT(url, data):
     return response
 
 bearer = "ADMIN_TOKEN" #your admin token
-filepath = "/Users/tahanson/Documents/people_emails.csv" #each user on a new line.
+filepath = "people_emails.csv" #each user on a new line.
 from_domain = "@domone.com"
 to_domain = "@domtwo.com"
 

@@ -18,7 +18,7 @@ def sendDELETE(url):
     return response
 
 bearer = "ADMIN_TOKEN" #your admin token
-filepath = '/Users/tahanson/Documents/people_emails.csv' #each user on a new line.
+filepath = "people_emails.csv" #each user on a new line.
 
 lines = []
 with open(filepath, 'r') as f:
