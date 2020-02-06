@@ -25,8 +25,8 @@ import requests
 
 filepath    = '/Users/tahanson/Desktop/fox.jpg'
 filetype    = 'image/jpg'
-roomId      = 'SOME_ROOM_ID'
-token       = 'YOUR_BEARER_TOKEN'
+roomId      = 'Y2lzY29zcGFyazovL3VzL1JPT00vOWY0NzVkZDAtZDk3Yi0xMWU5LWFhNDAtMDc5NjI5ZjE3Yzkz' #Project Unicorn Ultimate
+token       = 'ZmUyNDZiNmMtODRhZS00NWRlLWJlZGEtZjVhYTI0OWFkMmY3M2RmMWNiNjYtZWNh_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f'
 url         = "https://api.ciscospark.com/v1/messages"
 
 my_fields={'roomId': roomId,
@@ -37,4 +37,7 @@ m = MultipartEncoder(fields=my_fields)
 r = requests.post(url, data=m,
                   headers={'Content-Type': m.content_type,
                            'Authorization': 'Bearer ' + token})
+print(m)
+print(dir(r))
+print(r.headers)
 print r.json()

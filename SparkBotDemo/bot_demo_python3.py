@@ -90,13 +90,13 @@ class MainRequestHandler(BaseHTTPRequestHandler):
             return
 
 ####CHANGE THESE VALUES#####
-bot_id = "BOT_PERSON_ID"
-bot_name = "BOT_NAME"
-bearer = "BOT_BEARER_TOKEN"
+bot_id = os.environ["MY_BOT_ID"]
+bot_name = os.environ["MY_BOT_NAME"].lower()
+bearer = os.environ["MY_BOT_TOKEN"]
 bat_signal  = "https://upload.wikimedia.org/wikipedia/en/c/c6/Bat-signal_1989_film.jpg"
 
 def run():
-    port = 10010
+    port = int(os.environ["MY_BOT_PORT"])
     server_address = ('127.0.0.1', port)
     server = HTTPServer(server_address, MainRequestHandler)
     print('running server on port {0}...'.format(port))
