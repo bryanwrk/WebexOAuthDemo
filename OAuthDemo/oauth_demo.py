@@ -42,7 +42,7 @@ def oauth():
 
     if "code" in request.args and request.args.get("state") == "set_state_here":
         state = request.args.get("state") #Captures value of the state.
-        code = request.args.get("code") #Captures value of the code.
+        code = request.args.get("code") #Captures value of the code
         print "OAuth code:", code
         print "OAuth state:", state
         access_token, refresh_token = get_tokens(code) #As you can see, get_tokens() uses the code and returns access and refresh tokens.
